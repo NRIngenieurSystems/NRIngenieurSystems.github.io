@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NR Ingenieur Services - Freiberuflicher Ingenieur</title>
+    <!-- Tailwind CSS CDN für schnelles Styling und Responsivität -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter für eine moderne Schriftart -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Leichter Grauton für den Hintergrund */
+            color: #334155; /* Dunkler Text für gute Lesbarkeit */
+        }
+        /* Zusätzliche Anpassungen für den Scroll-Effekt der Navigation */
+        .sticky-nav.scrolled {
+            background-color: rgba(255, 255,255,0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header und Navigation -->
+    <header class="bg-white shadow-sm py-4 fixed w-full z-10 transition-all duration-300 sticky-nav">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-orange-700 rounded-md p-2 hover:bg-orange-50 transition-colors">NR Ingenieur Services</a>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#home" class="text-gray-700 hover:text-orange-700 font-medium transition-colors p-2 rounded-md hover:bg-gray-100">Start</a></li>
+                    <li><a href="#about" class="text-gray-700 hover:text-orange-700 font-medium transition-colors p-2 rounded-md hover:bg-gray-100">Über mich</a></li>
+                    <li><a href="#services" class="text-gray-700 hover:text-orange-700 font-medium transition-colors p-2 rounded-md hover:bg-gray-100">Leistungen</a></li>
+                    <li><a href="#projects" class="text-gray-700 hover:text-orange-700 font-medium transition-colors p-2 rounded-md hover:bg-gray-100">Projekte</a></li>
+                    <li><a href="#contact" class="text-gray-700 hover:text-orange-700 font-medium transition-colors p-2 rounded-md hover:bg-gray-100">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Sektion -->
+    <section id="home" class="relative bg-gradient-to-r from-orange-700 to-orange-900 text-white py-24 md:py-32 flex items-center justify-center min-h-screen-minus-header">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+               NR Ingenieur Services – Ihr erfahrener freiberuflicher Ingenieur
+            </h1>
+			
+			   <!-- Wird nicht angezeigt TODO ???? -->
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto opacity-0 animate-fade-in-up animation-delay-500">
+                Ich biete maßgeschneiderte Ingenieurdienstleistungen für Ihre Projekte. Von der Konzeption bis zur Umsetzung – präzise, effizient und zuverlässig.
+            </p>
+            <a href="#contact" class="bg-white text-orange-700 hover:bg-orange-100 px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 inline-block  animate-fade-in-up animation-delay-1000">
+                Jetzt unverbindlich anfragen
+            </a>
+        </div>
+    </section>
+
+    <!-- Über mich Sektion -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <!-- Platzhalterbild für Ihr Profilfoto -->
+                <img src="Pics/Nico1_b.jpg" alt="Profilbild von [NR Ingenieur Services]" class="rounded-lg shadow-xl w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Über mich</h2>
+                <p class="text-lg text-gray-600 mb-4">
+                    Als freiberuflicher Ingenieur mit sechs Jahren Erfahrung im Bereich [Ihre Spezialisierung, z.B. Maschinenbau, Elektrotechnik, Bauwesen] biete ich fundiertes Fachwissen und innovative Lösungen. Mein Fokus liegt darauf, komplexe technische Herausforderungen effizient und zielorientiert zu meistern.
+                </p>
+                <p class="text-lg text-gray-600">
+                    Ich bin spezialisiert auf [weitere Spezialisierung, z.B. Projektmanagement, CAD-Konstruktion, Simulationen]. Meine Arbeitsweise zeichnet sich durch Präzision, Zuverlässigkeit und eine enge Zusammenarbeit mit meinen Kunden aus, um optimale Ergebnisse zu erzielen.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leistungen Sektion -->
+    <section id="services" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12">Meine Leistungen</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+			<!-- Leistung 1 -->
+			<div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+				<img src="Pics/Icons/1_Messtechnik.jpg" alt="Messtechnik Icon" class="w-16 h-16 mb-4 mx-auto">
+				<h3 class="text-2xl font-semibold text-gray-800 mb-4">Messtechnik</h3>
+				<p class="text-gray-600">
+					Präzise Messungen und Analyse von elektrischen und physikalischen Größen für technische Systeme.
+				</p>
+			</div>
+
+			<!-- Leistung 2 -->
+			<div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+				<img src="Pics/Icons/2_Laborautomatisierung.jpg" alt="Laborautomatisierung Icon" class="w-16 h-16 mb-4 mx-auto">
+				<h3 class="text-2xl font-semibold text-gray-800 mb-4">Laborautomatisierung</h3>
+				<p class="text-gray-600">
+					Entwicklung und Implementierung von automatisierten Lösungen für Labore und Testumgebungen.
+				</p>
+			</div>
+
+			<!-- Leistung 3 -->
+			<div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+				<img src="Pics/Icons/3_PCB-Design.jpg" alt="PCB-Design Icon" class="w-16 h-16 mb-4 mx-auto">
+				<h3 class="text-2xl font-semibold text-gray-800 mb-4">PCB-Design</h3>
+				<p class="text-gray-600">
+					Entwurf und Optimierung von Leiterplatten für maßgeschneiderte elektronische Anwendungen.
+				</p>
+			</div>
+
+			<!-- Leistung 4 -->
+			<div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+				<img src="Pics/Icons/4_Prüfmittelmanagement.jpg" alt="Prüfmittelmanagement Icon" class="w-16 h-16 mb-4 mx-auto">
+				<h3 class="text-2xl font-semibold text-gray-800 mb-4">Prüfmittelmanagement</h3>
+				<p class="text-gray-600">
+					Organisation, Kalibrierung und Verwaltung von Prüfmitteln für höchste Qualitätsstandards.
+				</p>
+			</div>
+
+			<!-- Leistung 5 -->
+			<div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+				<img src="Pics/Icons/5_Schaltungsdesign.jpg" alt="Schaltungsdesign Icon" class="w-16 h-16 mb-4 mx-auto">
+				<h3 class="text-2xl font-semibold text-gray-800 mb-4">Schaltungsdesign</h3>
+				<p class="text-gray-600">
+					Entwicklung und Optimierung elektronischer Schaltungen für individuelle Anforderungen.
+				</p>
+			</div>
+
+			<!-- Leistung 6 -->
+			<div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+				<img src="Pics/Icons/6_Elektroinstallation und Inbetriebnahme.jpg" alt="Elektroinstallation und Inbetriebnahme Icon" class="w-16 h-16 mb-4 mx-auto">
+				<h3 class="text-2xl font-semibold text-gray-800 mb-4">Elektroinstallation und Inbetriebnahme</h3>
+				<p class="text-gray-600">
+					Fachgerechte Installation und Inbetriebnahme elektrischer Systeme und Anlagen.
+				</p>
+			</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projekte Sektion -->
+    <section id="projects" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12">Meine Projekte</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projekt 1 -->
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <img src="Pics\projekte\projekt (1).jpg" alt="Projekt 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Projektname 1</h3>
+                        <p class="text-gray-600 mb-4">
+                            Kurze Beschreibung des Projekts, der Herausforderungen und Ihrer Rolle.
+                        </p>
+                        <a href="#" class="text-orange-600 hover:text-orange-800 font-medium">Mehr Details &rarr;</a>
+                    </div>
+                </div>
+                <!-- Projekt 2 -->
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <img src="Pics\projekte\projekt (2).jpg" alt="Projekt 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Projektname 2</h3>
+                        <p class="text-gray-600 mb-4">
+                            Kurze Beschreibung des Projekts, der Herausforderungen und Ihrer Rolle.
+                        </p>
+                        <a href="#" class="text-orange-600 hover:text-orange-800 font-medium">Mehr Details &rarr;</a>
+                    </div>
+                </div>
+                <!-- Projekt 3 -->
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <img src="Pics\projekte\projekt (3).jpg" alt="Projekt 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Projektname 3</h3>
+                        <p class="text-gray-600 mb-4">
+                            Kurze Beschreibung des Projekts, der Herausforderungen und Ihrer Rolle.
+                        </p>
+                        <a href="#" class="text-orange-600 hover:text-orange-800 font-medium">Mehr Details &rarr;</a>
+                    </div>
+                </div>
+                <!-- Füge hier bei Bedarf weitere Projekte hinzu -->
+            </div>
+            <a href="#" class="mt-12 inline-block bg-orange-700 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:bg-orange-800 transition-colors duration-300 transform hover:scale-105">
+                Alle Projekte ansehen
+            </a>
+        </div>
+    </section>
+
+    <!-- Kontakt Sektion -->
+    <section id="contact" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12">Kontaktieren Sie mich</h2>
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-xl">
+                <p class="text-lg text-gray-600 mb-6">
+                    Haben Sie Fragen oder möchten Sie ein Projekt besprechen? Ich freue mich auf Ihre Nachricht!
+                </p>
+                <form action="#" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="sr-only">Ihr Name</label>
+                        <input type="text" id="name" name="name" placeholder="Ihr Name" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-orange-500 focus:border-orange-500 transition-colors" required>
+                    </div>
+                    <div>
+                        <label for="email" class="sr-only">Ihre E-Mail</label>
+                        <input type="email" id="email" name="email" placeholder="Ihre E-Mail-Adresse" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-orange-500 focus:border-orange-500 transition-colors" required>
+                    </div>
+                    <div>
+                        <label for="message" class="sr-only">Ihre Nachricht</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Ihre Nachricht" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-orange-500 focus:border-orange-500 transition-colors" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-orange-700 text-white px-6 py-3 rounded-md text-lg font-semibold shadow-md hover:bg-orange-800 transition-colors duration-300 transform hover:scale-105">
+                        Nachricht senden
+                    </button>
+                </form>
+                <p class="mt-6 text-gray-600">
+                    Oder rufen Sie mich direkt an: <a href="tel:+49123456789" class="text-orange-600 hover:underline">+49 123 456789</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 NR Ingenieur Services. Alle Rechte vorbehalten. | <a href="#" class="text-orange-400 hover:underline">Impressum</a> | <a href="#" class="text-orange-400 hover:underline">Datenschutz</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript für sanftes Scrollen zu Ankerpunkten
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // JavaScript für den Sticky-Nav-Effekt (Hintergrund und Schatten beim Scrollen)
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.sticky-nav');
+            if (window.scrollY > 50) { // Nach 50px Scrollen
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
