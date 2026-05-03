@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab – NR Ingenieur Systems</title>
+    <meta name="description" content="Das NR Ingenieur Lab: Idle Game, Ingenieur-Quiz und mehr – direkt im Browser.">
+    <style>
+        .quiz-container {
+            background: var(--surface-color);
+            padding: 40px;
+            border-radius: 32px;
+            border: 1px solid var(--glass-border);
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+        .quiz-question {
+            font-size: 1.25rem;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+        .quiz-options {
+            display: grid;
+            gap: 12px;
+        }
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 16px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+        }
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+        .quiz-option.correct {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+        }
+        .quiz-option.wrong {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/main-DOgj4bSl.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-BGhjgs9W.css">
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container">
+            <a href="index.html" class="logo">NR Ingenieur<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+                <li><a href="projekte.html">Projekte</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="lab.html" class="active">Lab</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+                <li class="mobile-cta"><a href="kontakt.html" class="btn btn-primary">Anfragen</a></li>
+            </ul>
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="kontakt.html" class="btn btn-primary nav-cta">Anfragen</a>
+        </div>
+    </nav>
+
+    <main style="padding-top: 120px; padding-bottom: 80px;">
+        <section class="services">
+            <div class="container">
+                <div class="section-header reveal active">
+                    <h1>NR Ingenieur <span style="color: var(--primary-color)">Lab.</span></h1>
+                    <p>Spielen, testen, lernen – direkt im Browser.</p>
+                </div>
+
+                <!-- Idle Game -->
+                <div class="glass" style="margin-top: 60px; padding: 60px; border-radius: 40px; text-align: center;">
+                    <div style="width: 64px; height: 64px; background: rgba(249, 115, 22, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-color); margin: 0 auto 24px;">
+                        <i data-lucide="gamepad-2" style="width: 32px; height: 32px;"></i>
+                    </div>
+                    <h2 style="margin-bottom: 16px;">Ingenieur Idle Game</h2>
+                    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 32px;">Baue dein Labor aus, automatisiere Prozesse und werde zum Messtechnik-Mogul – direkt im Browser.</p>
+                    <a href="game.html" class="btn btn-primary">Zum Game →</a>
+                </div>
+
+                <!-- Quiz -->
+                <div class="quiz-container reveal active">
+                    <h2 style="text-align: center; margin-bottom: 16px;">Ingenieur-Quick-Check</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 32px;">Testen Sie Ihr Wissen zum Ohm'schen Gesetz!</p>
+
+                    <div id="quiz-box">
+                        <div class="quiz-question" id="question-text">Lädt...</div>
+                        <div class="quiz-options" id="options-box"></div>
+                    </div>
+
+                    <div id="quiz-result" style="display: none; text-align: center; margin-top: 32px;">
+                        <h3 id="result-title">Fertig!</h3>
+                        <p id="result-text"></p>
+                        <button class="btn btn-secondary" onclick="resetQuiz()" style="margin-top: 24px;">Nochmal versuchen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo footer-logo">NR Ingenieur<span>.</span></div>
+            <div class="footer-links">
+                <a href="index.html">Start</a>
+                <a href="ueber-mich.html">Über mich</a>
+                <a href="leistungen.html">Leistungen</a>
+                <a href="projekte.html">Projekte</a>
+                <a href="kontakt.html">Kontakt</a>
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+            </div>
+            <p class="copyright">© 2026 NR Ingenieur Systems – Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        const questions = [
+            {
+                q: "Wie lautet die Formel für das Ohm'sche Gesetz?",
+                options: ["U = R / I", "U = I * R", "R = U * I", "I = R / U"],
+                correct: 1
+            },
+            {
+                q: "Welche Einheit hat der elektrische Widerstand?",
+                options: ["Volt (V)", "Ampere (A)", "Ohm (Ω)", "Watt (W)"],
+                correct: 2
+            },
+            {
+                q: "Was passiert mit dem Strom (I), wenn der Widerstand (R) bei gleichbleibender Spannung (U) größer wird?",
+                options: ["I wird größer", "I bleibt gleich", "I wird kleiner", "I wechselt die Richtung"],
+                correct: 2
+            },
+            {
+                q: "Wie wird die elektrische Spannung gemessen?",
+                options: ["In Reihe", "Parallel", "Hintereinander", "Gar nicht"],
+                correct: 1
+            },
+            {
+                q: "Ein Widerstand von 100 Ω wird an 10 V angeschlossen. Wie hoch ist der Strom?",
+                options: ["0.1 A", "1 A", "10 A", "1000 A"],
+                correct: 0
+            }
+        ];
+
+        let currentQ = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = questions[currentQ];
+            document.getElementById('question-text').innerText = (currentQ + 1) + ". " + q.q;
+            const optionsBox = document.getElementById('options-box');
+            optionsBox.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-option';
+                div.innerText = opt;
+                div.onclick = () => checkAnswer(idx);
+                optionsBox.appendChild(div);
+            });
+        }
+
+        function checkAnswer(idx) {
+            const q = questions[currentQ];
+            const options = document.querySelectorAll('.quiz-option');
+            if (idx === q.correct) {
+                options[idx].classList.add('correct');
+                score++;
+            } else {
+                options[idx].classList.add('wrong');
+                options[q.correct].classList.add('correct');
+            }
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+            setTimeout(() => {
+                currentQ++;
+                if (currentQ < questions.length) {
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            }, 1500);
+        }
+
+        function showResult() {
+            document.getElementById('quiz-box').style.display = 'none';
+            const result = document.getElementById('quiz-result');
+            result.style.display = 'block';
+            document.getElementById('result-text').innerText = `Du hast ${score} von ${questions.length} Fragen richtig beantwortet.`;
+        }
+
+        function resetQuiz() {
+            currentQ = 0;
+            score = 0;
+            document.getElementById('quiz-box').style.display = 'block';
+            document.getElementById('quiz-result').style.display = 'none';
+            loadQuestion();
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>

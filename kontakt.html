@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt – NR Ingenieur Systems</title>
+    <meta name="description" content="Kontaktieren Sie NR Ingenieur Systems für Ihr nächstes Elektrotechnik-Projekt. Unverbindliche Anfrage und kompetente Beratung.">
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+        .contact-info-card {
+            background: var(--surface-color);
+            padding: 40px;
+            border-radius: 32px;
+            border: 1px solid var(--glass-border);
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: var(--transition-smooth);
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .info-item {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(249, 115, 22, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/kontakt-CXwjXfur.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/main-DOgj4bSl.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-BGhjgs9W.css">
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container">
+            <a href="index.html" class="logo">NR Ingenieur<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+                <li><a href="projekte.html">Projekte</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="lab.html">Lab</a></li>
+                <li><a href="kontakt.html" class="active">Kontakt</a></li>
+                <li class="mobile-cta"><a href="kontakt.html" class="btn btn-primary">Anfragen</a></li>
+            </ul>
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="#contact-form" class="btn btn-primary nav-cta">Anfragen</a>
+        </div>
+    </nav>
+
+    <main style="padding-top: 120px; padding-bottom: 80px;">
+        <section class="services">
+            <div class="container">
+<div class="section-header reveal active">
+                    <h1>Kontaktieren Sie <span style="color: var(--primary-color)">mich.</span></h1>
+                    <p>Haben Sie ein Projekt im Kopf oder benötigen Sie technische Unterstützung? Ich freue mich auf Ihre Nachricht.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info-card reveal active">
+                        <h2 style="margin-bottom: 32px;">Direkter Draht</h2>
+                        
+                        <div class="info-item">
+                            <div class="info-icon"><i data-lucide="mail"></i></div>
+                            <div>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">E-Mail</p>
+                                <a href="mailto:nr.ingenieursystems@gmail.com" style="color: inherit; text-decoration: none; font-weight: 600;">nr.ingenieursystems@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon"><i data-lucide="map-pin"></i></div>
+                            <div>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">Einsatzbereich</p>
+                                <p style="font-weight: 600;">DE, CH & Remote</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon"><i data-lucide="clock"></i></div>
+                            <div>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">Antwortzeit</p>
+                                <p style="font-weight: 600;">In der Regel binnen 24h</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass reveal active" style="padding: 40px; border-radius: 32px;">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Ihr Name (Pflichtfeld)</label>
+                                <input type="text" id="name" name="Name" placeholder="Max Mustermann" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Ihre E-Mail (Pflichtfeld)</label>
+                                <input type="email" id="email" name="email" placeholder="max@beispiel.de" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tel">Telefonnummer (optional)</label>
+                                <input type="tel" id="tel" name="Telefon" placeholder="+49 123 456789">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Betreff (Pflichtfeld)</label>
+                                <input type="text" id="subject" name="Betreff" placeholder="Anfrage: PCB Design" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Ihre Nachricht (Pflichtfeld)</label>
+                                <textarea id="message" name="Nachricht" rows="5" placeholder="Wie kann ich Ihnen helfen?" required></textarea>
+                            </div>
+                            
+                            <div class="form-group" style="display: flex; gap: 12px; align-items: flex-start; margin-top: 32px;">
+                                <input type="checkbox" id="datenschutz" name="datenschutz" required style="width: auto; margin-top: 4px;">
+                                <label for="datenschutz" style="font-size: 0.85rem; line-height: 1.4; color: var(--text-secondary);">
+                                    Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen gespeichert werden. (Pflichtfeld)
+                                    <br><span style="font-size: 0.75rem; opacity: 0.8;">Name und E-Mail werden zur Bearbeitung Ihrer Anfrage benötigt.</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 24px;">Nachricht senden</button>
+                            
+                            <div id="form-status" class="form-status" aria-live="polite" role="status" style="margin-top: 24px;"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo footer-logo">NR Ingenieur<span>.</span></div>
+            <div class="footer-links">
+                <a href="index.html">Start</a>
+                <a href="ueber-mich.html">Über mich</a>
+                <a href="leistungen.html">Leistungen</a>
+                <a href="projekte.html">Projekte</a>
+                <a href="kontakt.html">Kontakt</a>
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+            </div>
+            <p class="copyright">© 2026 NR Ingenieur Systems – Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</body>
+</html>

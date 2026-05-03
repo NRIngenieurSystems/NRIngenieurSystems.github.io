@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle Game – NR Ingenieur Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Game specific styles from nr-ingenieur-game.html */
+        #game-wrapper {
+            --game-bg: #0a0e0f;
+            --game-bg2: #111518;
+            --game-bg3: #161c1e;
+            --game-border: #1e3a2f;
+            --game-accent: #00c97b;
+            --game-accent2: #00854f;
+            --game-amber: #e8a020;
+            --game-red: #e05050;
+            --game-text: #b8d4c8;
+            --game-text2: #6a9a88;
+            --game-dim: #3a5a4a;
+            
+            background: var(--game-bg);
+            color: var(--game-text);
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--game-border);
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        #game-header { background: var(--game-bg); border-bottom: 1px solid var(--game-border); padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; }
+        #game-header-title { font-family: 'Orbitron', monospace; font-size: 11px; letter-spacing: 3px; color: var(--game-accent2); }
+        
+        #game-root { display: grid; grid-template-columns: 220px 1fr 210px; gap: 1px; background: var(--game-border); min-height: 600px; }
+        .panel { background: var(--game-bg2); padding: 14px; overflow: hidden; }
+        .panel-title { font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 3px; color: var(--game-accent2); text-transform: uppercase; border-bottom: 1px solid var(--game-border); padding-bottom: 6px; margin-bottom: 10px; }
+        .stat-row { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 12px; }
+        .stat-label { color: var(--game-text2); }
+        .stat-val { color: var(--game-accent); font-weight: bold; }
+        .stat-val.amber { color: var(--game-amber); }
+        
+        .game-btn { display: block; width: 100%; background: transparent; border: 1px solid var(--game-accent2); color: var(--game-accent); font-family: 'Share Tech Mono', monospace; font-size: 12px; padding: 7px 10px; cursor: pointer; text-align: left; margin-bottom: 6px; transition: all .15s; }
+        .game-btn:hover:not(:disabled) { background: var(--game-accent2); color: #fff; }
+        .game-btn:disabled { border-color: var(--game-dim); color: var(--game-dim); cursor: default; }
+        .game-btn .cost { float: right; font-size: 11px; color: var(--game-amber); }
+        
+        #click-btn { background: var(--game-bg3); border: 1px solid var(--game-accent); color: var(--game-accent); font-family: 'Orbitron', monospace; font-size: 11px; letter-spacing: 2px; padding: 16px 10px; width: 100%; cursor: pointer; margin-bottom: 12px; transition: all .1s; line-height: 1.8; }
+        #click-btn:hover { background: var(--game-accent); color: var(--game-bg); }
+        
+        .upgrade-btn { display: block; background: var(--game-bg3); border: 1px solid var(--game-amber); color: var(--game-amber); font-family: 'Share Tech Mono', monospace; font-size: 11px; padding: 6px 8px; width: 100%; cursor: pointer; text-align: left; margin-bottom: 5px; transition: all .15s; }
+        .upgrade-btn:hover:not(:disabled) { background: var(--game-amber); color: var(--game-bg); }
+        
+        .log-area { height: 180px; overflow-y: auto; font-size: 11px; line-height: 1.7; color: var(--game-text2); }
+        .progress-bar { height: 3px; background: var(--game-border); margin-top: 4px; }
+        .progress-fill { height: 100%; background: var(--game-accent); transition: width .3s; }
+        
+        @media (max-width: 900px) {
+            #game-root { grid-template-columns: 1fr; }
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/main-DOgj4bSl.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-BGhjgs9W.css">
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container">
+            <a href="index.html" class="logo">NR Ingenieur<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="projekte.html">Projekte</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main style="padding-top: 120px; padding-bottom: 80px;">
+        <div class="container">
+            <nav class="breadcrumbs" style="margin-bottom: 40px; color: var(--text-secondary); font-size: 0.9rem;">
+                <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">Start</a> &gt; <a href="projekte.html" style="color: var(--text-secondary); text-decoration: none;">Projekte</a> &gt; <span>Idle Game</span>
+            </nav>
+
+            <div id="game-wrapper">
+                <div id="game-header">
+                    <span id="game-header-title">NR INGENIEUR SYSTEMS // TERMINAL</span>
+                    <span style="font-size:11px; color:var(--game-dim)">v2.4.1</span>
+                </div>
+                <div id="game-root">
+                    <!-- Content will be handled by original script -->
+                    <!-- LEFT PANEL -->
+                    <div class="panel">
+                        <div class="panel-title">Status</div>
+                        <div id="phase-label" style="font-size:9px; color:var(--game-amber); border:1px solid var(--game-amber); padding:3px 8px; display:inline-block; margin-bottom:10px;">PHASE 1: HANDWERKER</div>
+                        <div class="stat-row"><span class="stat-label">CHF Umsatz</span><span class="stat-val amber" id="money">0</span></div>
+                        <div class="stat-row"><span class="stat-label">CHF / Sek</span><span class="stat-val" id="cps">0.00</span></div>
+                        <div class="stat-row"><span class="stat-label">Projekte total</span><span class="stat-val" id="projects">0</span></div>
+                        <hr style="border:none; border-top:1px solid var(--game-border); margin:10px 0">
+                        <div class="stat-row"><span class="stat-label">Handwerker</span><span class="stat-val" id="s-handwerker">1</span></div>
+                        <div class="stat-row"><span class="stat-label">Techniker</span><span class="stat-val" id="s-techniker">0</span></div>
+                        <div class="stat-row"><span class="stat-label">Ingenieure</span><span class="stat-val" id="s-ingenieure">0</span></div>
+                        <div class="stat-row"><span class="stat-label">Börsenwert</span><span class="stat-val amber" id="s-stock">–</span></div>
+                        <hr style="border:none; border-top:1px solid var(--game-border); margin:10px 0">
+                        <div class="panel-title" style="margin-top:6px">Fortschritt</div>
+                        <div style="font-size:11px;color:var(--game-text2);margin-bottom:4px" id="next-phase-label">Nächste Phase: CHF 500</div>
+                        <div class="progress-bar"><div class="progress-fill" id="phase-progress" style="width:0%"></div></div>
+                    </div>
+
+                    <!-- CENTER PANEL -->
+                    <div class="panel">
+                        <div class="panel-title">Steuerung</div>
+                        <button id="click-btn" onclick="manualClick()">
+                            [ PROJEKT ABSCHLIESSEN ]<br>
+                            <span style="font-size:9px;letter-spacing:1px;color:var(--game-text2)" id="click-info">+CHF 10 pro Klick</span>
+                        </button>
+
+                        <div id="hires-section">
+                            <div class="panel-title">Personal einstellen</div>
+                            <button class="game-btn" id="btn-techniker" onclick="hire('techniker')">Techniker <span class="cost" id="cost-techniker">CHF 80</span></button>
+                            <button class="game-btn" id="btn-ingenieur" onclick="hire('ingenieur')" disabled>Ingenieur <span class="cost" id="cost-ingenieur">CHF 500</span></button>
+                        </div>
+
+                        <div id="products-section" style="display:none">
+                            <div class="panel-title" style="margin-top:12px">Produkte</div>
+                            <button class="game-btn" id="btn-pcb" onclick="develop('pcb')" disabled>PCB-Design <span class="cost">CHF 1'000</span></button>
+                        </div>
+
+                        <div id="ipo-section" style="display:none">
+                            <div class="panel-title" style="margin-top:12px">Börse</div>
+                            <button class="game-btn" id="btn-ipo" onclick="doIPO()">Börsengang <span class="cost">CHF 50'000</span></button>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT PANEL -->
+                    <div class="panel">
+                        <div class="panel-title">Log</div>
+                        <div class="log-area" id="log"></div>
+                        <hr style="border:none; border-top:1px solid var(--game-border); margin:10px 0">
+                        <button class="upgrade-btn" onclick="saveGame()" style="margin-bottom:4px">Speichern</button>
+                        <button class="upgrade-btn" onclick="loadGame()" style="margin-bottom:4px">Laden</button>
+                        <button class="upgrade-btn" onclick="resetGame()" style="border-color:var(--game-red);color:var(--game-red)">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo footer-logo">NR Ingenieur<span>.</span></div>
+            <p class="copyright">© 2026 NR Ingenieur Systems – Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Original Game Logic -->
+    <script>
+        const G={
+            money:0,projects:0,rep:0,
+            handwerker:1,techniker:0,ingenieure:0,seniors:0,
+            products:{pcb:false,automation:false,iso:false},
+            upgrades:{tools:false,training:false,software:false,brand:false},
+            ipo:false,expanded:false,
+            phase:1,clickMult:1,autoMult:1,
+            stockPrice:0,stockTick:0,
+            costs:{techniker:80,ingenieur:500,senior:2000}
+        };
+
+        function fmt(n){
+            if(n>=1000000)return(n/1000000).toFixed(2)+'M';
+            if(n>=1000)return(n/1000).toFixed(1)+'k';
+            return Math.floor(n).toString();
+        }
+
+        function clickVal(){
+            let base=10*(G.handwerker+G.techniker*2+G.ingenieure*5+G.seniors*12);
+            return Math.floor(base*G.clickMult);
+        }
+
+        function autoPerSec(){
+            let base=G.techniker*2+G.ingenieure*8+G.seniors*25;
+            if(G.products.pcb)base*=1.3;
+            if(G.products.automation)base*=1.8;
+            if(G.products.iso)base*=2.2;
+            return base*G.autoMult;
+        }
+
+        function repPerSec(){
+            return (G.upgrades.training?1:0)+(G.ingenieure*0.2)+(G.seniors*0.5);
+        }
+
+        let logQueue=[];
+        function log(msg,isNew=false){
+            logQueue.push({msg,isNew});
+            if(logQueue.length>60)logQueue.shift();
+            renderLog();
+        }
+
+        function renderLog(){
+            const el=document.getElementById('log');
+            el.innerHTML=logQueue.slice().reverse().map(({msg,isNew})=>
+                `<p style="margin:0; ${isNew?'color:var(--game-accent)':''}">&gt; ${msg}</p>`
+            ).join('');
+        }
+
+        const logMsgs=['Installation abgeschlossen','Schaltplan geprüft','Messung OK','Kalibrierung OK','Kabel verlegt','ISO Doku fertig'];
+
+        window.manualClick = function(){
+            const val=clickVal();
+            G.money+=val;
+            G.projects++;
+            if(Math.random()<0.3)log(logMsgs[Math.floor(Math.random()*logMsgs.length)],true);
+            updateUI();
+        };
+
+        window.hire = function(type){
+            const cost=G.costs[type];
+            if(G.money<cost)return;
+            G.money-=cost;
+            if(type==='techniker'){G.techniker++;G.costs.techniker=Math.floor(G.costs.techniker*1.15);}
+            if(type==='ingenieur'){G.ingenieure++;G.costs.ingenieur=Math.floor(G.costs.ingenieur*1.2);}
+            updateUI();
+        };
+
+        window.saveGame = function(){ localStorage.setItem('nr_ingenieur_save',JSON.stringify(G)); log('Gespeichert.',true); };
+        window.loadGame = function(){ 
+            const s=localStorage.getItem('nr_ingenieur_save');
+            if(s){ Object.assign(G, JSON.parse(s)); log('Geladen.',true); updateUI(); }
+        };
+        window.resetGame = function(){ if(confirm('Reset?')) { localStorage.removeItem('nr_ingenieur_save'); location.reload(); } };
+
+        function updateUI(){
+            document.getElementById('money').textContent='CHF '+fmt(G.money);
+            document.getElementById('cps').textContent=autoPerSec().toFixed(1);
+            document.getElementById('projects').textContent=Math.floor(G.projects);
+            document.getElementById('s-handwerker').textContent=G.handwerker;
+            document.getElementById('s-techniker').textContent=G.techniker;
+            document.getElementById('s-ingenieure').textContent=G.ingenieure;
+            
+            const next = G.phase === 1 ? 500 : 5000;
+            const pct = Math.min(100, (G.money / next) * 100);
+            document.getElementById('phase-progress').style.width = pct + '%';
+            
+            document.getElementById('btn-techniker').disabled = G.money < G.costs.techniker;
+            document.getElementById('btn-ingenieur').disabled = G.money < G.costs.ingenieur;
+        }
+
+        setInterval(()=>{
+            G.money+=autoPerSec()/20;
+            if(Math.random()<0.005)log(logMsgs[Math.floor(Math.random()*logMsgs.length)]);
+            updateUI();
+        },50);
+
+        updateUI();
+        log('System bereit.');
+    </script>
+</body>
+</html>

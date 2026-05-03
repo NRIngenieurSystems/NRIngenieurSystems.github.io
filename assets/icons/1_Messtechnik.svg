@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" fill="none">
+  <rect width="600" height="200" fill="#0f0f0f"/>
+
+  <!-- Oscilloscope body -->
+  <rect x="195" y="22" width="210" height="155" rx="10" stroke="#cbd5e1" stroke-width="2"/>
+
+  <!-- Screen -->
+  <rect x="210" y="35" width="155" height="98" rx="4" stroke="#64748b" stroke-width="1.5"/>
+
+  <!-- Sine wave -->
+  <path d="M217 84 Q231 55 245 84 Q259 113 273 84 Q287 55 301 84 Q315 113 329 84 Q343 55 357 84"
+        stroke="#f97316" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Knobs -->
+  <circle cx="228" cy="157" r="9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="258" cy="157" r="9" stroke="#64748b" stroke-width="1.5"/>
+  <circle cx="288" cy="157" r="9" stroke="#64748b" stroke-width="1.5"/>
+
+  <!-- BNC connector -->
+  <rect x="348" y="150" width="20" height="13" rx="6" stroke="#64748b" stroke-width="1.5"/>
+  <circle cx="358" cy="156" r="2.5" fill="#64748b"/>
+</svg>

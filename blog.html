@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog – NR Ingenieur Systems</title>
+    <meta name="description" content="Tech News Blog von NR Ingenieur Systems. Einblicke in Elektrotechnik, Automatisierung und Software-Tools.">
+    <style>
+        .blog-filter {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 8px 20px;
+            border-radius: 100px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition-smooth);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--text-primary);
+            background: rgba(249, 115, 22, 0.1);
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+        .blog-card {
+            background: var(--surface-color);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition-smooth);
+        }
+        .blog-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+        .blog-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/main-DOgj4bSl.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-BGhjgs9W.css">
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container">
+            <a href="index.html" class="logo">NR Ingenieur<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+                <li><a href="projekte.html">Projekte</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="lab.html">Lab</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+                <li class="mobile-cta"><a href="kontakt.html" class="btn btn-primary">Anfragen</a></li>
+            </ul>
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="kontakt.html" class="btn btn-primary nav-cta">Anfragen</a>
+        </div>
+    </nav>
+
+    <main style="padding-top: 120px;">
+        <section class="services">
+            <div class="container">
+<div class="section-header reveal active">
+                    <h1>Tech <span style="color: var(--primary-color)">Insights.</span></h1>
+                    <p>Wissen teilen, Innovationen verstehen. Mein Blog zu Elektrotechnik und Automatisierung.</p>
+                </div>
+
+                <div class="blog-filter">
+                    <button class="filter-btn active">Alle</button>
+                    <button class="filter-btn">Elektrotechnik</button>
+                    <button class="filter-btn">Automatisierung</button>
+                    <button class="filter-btn">Tools & Software</button>
+                    <button class="filter-btn">Allgemein</button>
+                </div>
+
+                <div class="blog-grid">
+                    <!-- Placeholder Blog Post -->
+                    <div class="blog-card reveal active">
+                        <div style="height: 200px; background: #111; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="newspaper" style="width: 48px; height: 48px; opacity: 0.2;"></i>
+                        </div>
+                        <div style="padding: 30px;">
+                            <div class="blog-meta">02. Mai 2026 • Elektrotechnik</div>
+                            <h3 style="margin-bottom: 16px;">Willkommen im neuen NR Ingenieur Blog</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 24px;">Hier erfahren Sie künftig alles über moderne Messtechnik, effiziente Laborprozesse und die neuesten Trends im PCB-Design.</p>
+                            <a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Weiterlesen →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo footer-logo">NR Ingenieur<span>.</span></div>
+            <div class="footer-links">
+                <a href="index.html">Start</a>
+                <a href="ueber-mich.html">Über mich</a>
+                <a href="leistungen.html">Leistungen</a>
+                <a href="projekte.html">Projekte</a>
+                <a href="kontakt.html">Kontakt</a>
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+            </div>
+            <p class="copyright">© 2026 NR Ingenieur Systems – Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</body>
+</html>
