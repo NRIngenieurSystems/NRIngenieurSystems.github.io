@@ -1,0 +1,13 @@
+{
+  "forms": {
+    "contactForm": {
+      "name": "Kontaktformular NR-IngenieurSystems",
+      "actions": [
+        {
+          "type": "email",
+          "to": "nr.ingenieursystems@gmail.com"
+        }
+      ]
+    }
+  }
+}

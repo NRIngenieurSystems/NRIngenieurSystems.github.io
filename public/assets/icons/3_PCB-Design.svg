@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" fill="none">
+  <rect width="600" height="200" fill="#0f0f0f"/>
+
+  <!-- Board outline -->
+  <rect x="130" y="28" width="340" height="148" rx="6" stroke="#cbd5e1" stroke-width="2"/>
+
+  <!-- Mounting holes -->
+  <circle cx="148" cy="46" r="5" stroke="#64748b" stroke-width="1.5"/>
+  <circle cx="452" cy="46" r="5" stroke="#64748b" stroke-width="1.5"/>
+  <circle cx="148" cy="158" r="5" stroke="#64748b" stroke-width="1.5"/>
+  <circle cx="452" cy="158" r="5" stroke="#64748b" stroke-width="1.5"/>
+
+  <!-- IC chip center -->
+  <rect x="252" y="62" width="96" height="80" rx="4" stroke="#f97316" stroke-width="2"/>
+  <!-- IC pins top -->
+  <line x1="272" y1="54" x2="272" y2="62" stroke="#f97316" stroke-width="2"/>
+  <line x1="294" y1="54" x2="294" y2="62" stroke="#f97316" stroke-width="2"/>
+  <line x1="316" y1="54" x2="316" y2="62" stroke="#f97316" stroke-width="2"/>
+  <line x1="338" y1="54" x2="338" y2="62" stroke="#f97316" stroke-width="2"/>
+  <!-- IC pins bottom -->
+  <line x1="272" y1="142" x2="272" y2="150" stroke="#f97316" stroke-width="2"/>
+  <line x1="294" y1="142" x2="294" y2="150" stroke="#f97316" stroke-width="2"/>
+  <line x1="316" y1="142" x2="316" y2="150" stroke="#f97316" stroke-width="2"/>
+  <line x1="338" y1="142" x2="338" y2="150" stroke="#f97316" stroke-width="2"/>
+  <!-- IC pins left -->
+  <line x1="240" y1="80" x2="252" y2="80" stroke="#f97316" stroke-width="2"/>
+  <line x1="240" y1="102" x2="252" y2="102" stroke="#f97316" stroke-width="2"/>
+  <line x1="240" y1="124" x2="252" y2="124" stroke="#f97316" stroke-width="2"/>
+  <!-- IC pins right -->
+  <line x1="348" y1="80" x2="360" y2="80" stroke="#f97316" stroke-width="2"/>
+  <line x1="348" y1="102" x2="360" y2="102" stroke="#f97316" stroke-width="2"/>
+  <line x1="348" y1="124" x2="360" y2="124" stroke="#f97316" stroke-width="2"/>
+  <!-- IC dot -->
+  <circle cx="262" cy="72" r="3" fill="#f97316"/>
+
+  <!-- Traces left -->
+  <path d="M175 80 L240 80" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M155 80 L155 60 L175 60 L175 80" stroke="#64748b" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+  <circle cx="155" cy="80" r="4" stroke="#64748b" stroke-width="1.5"/>
+  <path d="M155 102 L240 102" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="155" cy="102" r="4" stroke="#64748b" stroke-width="1.5"/>
+  <path d="M175 124 L240 124" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M155 145 L155 124 L175 124" stroke="#64748b" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+  <circle cx="155" cy="145" r="4" stroke="#64748b" stroke-width="1.5"/>
+
+  <!-- Traces right -->
+  <path d="M360 80 L420 80 L420 60 L445 60" stroke="#64748b" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+  <circle cx="445" cy="60" r="4" stroke="#64748b" stroke-width="1.5"/>
+  <path d="M360 102 L445 102" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="445" cy="102" r="4" stroke="#64748b" stroke-width="1.5"/>
+  <path d="M360 124 L420 124 L420 145 L445 145" stroke="#64748b" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+  <circle cx="445" cy="145" r="4" stroke="#64748b" stroke-width="1.5"/>
+</svg>

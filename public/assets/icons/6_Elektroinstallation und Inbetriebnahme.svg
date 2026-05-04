@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" fill="none">
+  <rect width="600" height="200" fill="#0f0f0f"/>
+
+  <!-- Cable plug left -->
+  <!-- Plug body -->
+  <rect x="88" y="72" width="68" height="58" rx="8" stroke="#cbd5e1" stroke-width="2"/>
+  <!-- Plug pins -->
+  <rect x="100" y="55" width="12" height="18" rx="3" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="132" y="55" width="12" height="18" rx="3" stroke="#cbd5e1" stroke-width="2"/>
+  <!-- Ground pin -->
+  <rect x="116" y="48" width="12" height="25" rx="3" stroke="#f97316" stroke-width="2"/>
+  <!-- Strain relief lines -->
+  <line x1="100" y1="140" x2="144" y2="140" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="100" y1="148" x2="144" y2="148" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="100" y1="156" x2="144" y2="156" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Cable -->
+  <path d="M156 101 Q230 70 300 101 Q370 132 444 101"
+        stroke="#cbd5e1" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Cable highlight -->
+  <path d="M156 101 Q230 70 300 101 Q370 132 444 101"
+        stroke="#f97316" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.4"/>
+
+  <!-- Cable plug right -->
+  <rect x="444" y="72" width="68" height="58" rx="8" stroke="#cbd5e1" stroke-width="2"/>
+  <!-- Plug pins right -->
+  <rect x="456" y="55" width="12" height="18" rx="3" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="488" y="55" width="12" height="18" rx="3" stroke="#cbd5e1" stroke-width="2"/>
+  <!-- Ground pin right -->
+  <rect x="472" y="48" width="12" height="25" rx="3" stroke="#f97316" stroke-width="2"/>
+  <!-- Strain relief lines right -->
+  <line x1="456" y1="140" x2="500" y2="140" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="456" y1="148" x2="500" y2="148" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="456" y1="156" x2="500" y2="156" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
