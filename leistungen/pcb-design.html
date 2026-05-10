@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pcb-design & Kalibrierung – NR Ingenieur Systems</title>
+    <title>PCB-Design – NR Ingenieur Systems</title>
     <script defer src="https://umami-delta-virid.vercel.app/script.js" data-website-id="90c34ddc-d669-47a5-a9f2-c6610b942f17"></script>
   <script type="module" crossorigin src="/assets/main-DFyTYC2e.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/main-0LvhfuKT.css">
@@ -33,10 +33,10 @@
         <section class="services">
             <div class="container">
                 <div class="leistungen-subnav">
-                    <a href="messtechnik.html">Messtechnik & Kalibrierung</a>
+                    <a href="messtechnik.html">Messtechnik</a>
+                    <a href="pruefmittelmanagement.html">Kalibrierungsprozesse & Prüfmittelmanagement</a>
                     <a href="laborautomatisierung.html">Laborautomatisierung</a>
                     <a href="pcb-design.html" class="active">PCB-Design</a>
-                    <a href="pruefmittelmanagement.html">Prüfmittelmanagement</a>
                     <a href="schaltungsdesign.html">Schaltungsdesign</a>
                     <a href="elektroinstallation.html">Elektroinstallation</a>
                 </div>
@@ -45,16 +45,79 @@
                     <p>Präzision ist die Grundlage jeder erfolgreichen Entwicklung.</p>
                 </div>
 
-                <div class="glass" style="padding: 60px; border-radius: 40px;">
-                    <div class="todo-label" style="background:#f59e0b; color:#000; padding:4px 12px; border-radius:4px; font-size:0.75rem; font-weight:700; margin-bottom:24px;">TODO: CONTENT</div>
-                    <p>Hier entstehen detaillierte Informationen zu meinen Dienstleistungen im Bereich pcb-design und Kalibrierung.</p>
-                    <ul style="margin-top: 24px; display: grid; gap: 12px;">
-                        <li>Prüfmittelmanagement nach ISO 9001</li>
-                        <li>Entwicklung von Kalibrierprozessen</li>
-                        <li>Automatisierte Datenerfassung</li>
-                        <li>Unsicherheitsbetrachtungen</li>
-                    </ul>
-                    <a href="../kontakt.html" class="btn btn-primary" style="margin-top: 40px;">Jetzt anfragen</a>
+                <div class="glass" style="padding: 60px; border-radius: 40px; margin-bottom: 32px;">
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); max-width: 800px;">
+                        Von der Schematik bis zum fertigungsreifen Layout – ich entwickle Leiterplatten,
+                        die funktionieren. Mit Blick auf Signalintegrität, EMV-Anforderungen und
+                        Fertigbarkeit entstehen Designs, die in der Praxis zuverlässig arbeiten –
+                        ob Einzelprototyp oder Serienfertigung.
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 32px;">
+
+                    <div class="glass" style="padding: 36px; border-radius: 24px;">
+                        <div style="color: var(--primary-color); margin-bottom: 16px;"><i data-lucide="pencil-ruler" style="width:32px;height:32px;"></i></div>
+                        <h3 style="margin-bottom: 12px;">Schematik & Layout</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            Durchgängige Entwicklung vom Schaltplan bis zum fertigungsreifen PCB-Layout –
+                            sauber strukturiert und dokumentiert.
+                        </p>
+                    </div>
+
+                    <div class="glass" style="padding: 36px; border-radius: 24px;">
+                        <div style="color: var(--primary-color); margin-bottom: 16px;"><i data-lucide="layers" style="width:32px;height:32px;"></i></div>
+                        <h3 style="margin-bottom: 12px;">Multilayer-Design</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            Entwicklung mehrlagiger Leiterplatten mit gezielter Lagenstruktur für
+                            optimale Signalführung, Stromtragfähigkeit und thermisches Verhalten.
+                        </p>
+                    </div>
+
+                    <div class="glass" style="padding: 36px; border-radius: 24px;">
+                        <div style="color: var(--primary-color); margin-bottom: 16px;"><i data-lucide="wave-square" style="width:32px;height:32px;"></i></div>
+                        <h3 style="margin-bottom: 12px;">Signalintegrität</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            Impedanzkontrolliertes Routing, differentielle Paare und sorgfältige
+                            Masseführung für störungsfreie Signalübertragung auch bei hohen Frequenzen.
+                        </p>
+                    </div>
+
+                    <div class="glass" style="padding: 36px; border-radius: 24px;">
+                        <div style="color: var(--primary-color); margin-bottom: 16px;"><i data-lucide="radio" style="width:32px;height:32px;"></i></div>
+                        <h3 style="margin-bottom: 12px;">EMV-gerechtes Design</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            Layoutstrategien zur Minimierung von Abstrahlung und Einkopplung –
+                            für Designs, die EMV-Prüfungen bestehen.
+                        </p>
+                    </div>
+
+                    <div class="glass" style="padding: 36px; border-radius: 24px;">
+                        <div style="color: var(--primary-color); margin-bottom: 16px;"><i data-lucide="scan-line" style="width:32px;height:32px;"></i></div>
+                        <h3 style="margin-bottom: 12px;">Design for Test (DfT)</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            Testpunkte, JTAG-Schnittstellen und prüfgerechte Bauteilplatzierung –
+                            damit Ihre Platine im Produktionsprozess effizient getestet werden kann.
+                        </p>
+                    </div>
+
+                    <div class="glass" style="padding: 36px; border-radius: 24px;">
+                        <div style="color: var(--primary-color); margin-bottom: 16px;"><i data-lucide="package" style="width:32px;height:32px;"></i></div>
+                        <h3 style="margin-bottom: 12px;">Prototyp bis Serie</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            Begleitung vom ersten Prototypen bis zur Serienfertigung – inklusive
+                            Bestückungsdaten, Fertigungsunterlagen und Revisionsmanagement.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="glass" style="padding: 48px 60px; border-radius: 24px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+                    <div>
+                        <h3 style="margin-bottom: 8px;">Ihr nächstes PCB – durchdacht von Anfang an.</h3>
+                        <p style="color: var(--text-secondary);">Teilen Sie mir Ihre Anforderungen mit – ich erstelle Ihnen ein Angebot.</p>
+                    </div>
+                    <a href="../kontakt.html" class="btn btn-primary" style="white-space: nowrap;">Jetzt anfragen</a>
                 </div>
             </div>
         </section>
