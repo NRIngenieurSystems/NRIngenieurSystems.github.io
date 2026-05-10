@@ -1,0 +1,18 @@
+<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+
+  <g transform="translate(20, 20)">
+    <rect x="5" y="5" width="90" height="90" rx="18" fill="#f97316" opacity="0.15"></rect>
+    <rect x="10" y="10" width="80" height="80" rx="14" fill="none" stroke="#f97316" stroke-width="2"></rect>
+
+    <path d="M 25 65 V 35 M 25 35 L 45 55 M 45 55 V 35" stroke="#f97316" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+    <path d="M 55 65 V 35 M 55 35 H 70 Q 75 35 75 40 Q 75 45 70 45 H 55 M 65 45 L 75 65" stroke="#f97316" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+
+    <circle cx="25" cy="35" r="3.5" fill="#f97316"></circle>
+    <circle cx="45" cy="35" r="3.5" fill="#f97316"></circle>
+    <circle cx="55" cy="35" r="3.5" fill="#f97316"></circle>
+    <circle cx="75" cy="40" r="3.5" fill="#f97316"></circle>
+  </g>
+
+  <text x="140" y="64" font-family="Outfit, sans-serif" font-size="32" font-weight="800" fill="#f8fafc" letter-spacing="-0.64">NR INGENIEUR</text>
+  <text x="140" y="82" font-family="Plus Jakarta Sans, sans-serif" font-size="14" font-weight="500" fill="#94a3b8" letter-spacing="0.7">SYSTEMS</text>
+</svg>
