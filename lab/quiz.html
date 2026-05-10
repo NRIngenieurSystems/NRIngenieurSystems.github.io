@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz – NR Ingenieur Systems</title>
+    <style>
+        .quiz-container {
+            background: var(--surface-color);
+            padding: 48px;
+            border-radius: 32px;
+            border: 1px solid var(--glass-border);
+            max-width: 800px;
+            margin: 48px auto 0;
+        }
+        .quiz-question {
+            font-size: 1.25rem;
+            margin-bottom: 24px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        .quiz-options {
+            display: grid;
+            gap: 12px;
+        }
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 16px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+        }
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+        .quiz-option.correct {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+        }
+        .quiz-option.wrong {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+        }
+        .quiz-progress {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+        .quiz-progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            transition: background 0.3s;
+        }
+        .quiz-progress-dot.done { background: var(--primary-color); }
+        .quiz-progress-dot.active { background: rgba(249,115,22,0.4); border: 1px solid var(--primary-color); }
+    </style>
+    <script defer src="https://umami-delta-virid.vercel.app/script.js" data-website-id="90c34ddc-d669-47a5-a9f2-c6610b942f17"></script>
+  <script type="module" crossorigin src="/assets/main-DFyTYC2e.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-0LvhfuKT.css">
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container">
+            <a href="../index.html" class="logo">NR Ingenieur<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../leistungen.html">Leistungen</a></li>
+                <li><a href="../ueber-mich.html">Über mich</a></li>
+                <li><a href="../blog.html">Blog</a></li>
+                <li><a href="../lab.html" class="active">Lab</a></li>
+                <li><a href="../kontakt.html">Kontakt</a></li>
+                <li class="mobile-cta"><a href="../kontakt.html" class="btn btn-primary">Anfragen</a></li>
+            </ul>
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="../kontakt.html" class="btn btn-primary nav-cta">Anfragen</a>
+        </div>
+    </nav>
+
+    <main style="padding-top: 120px; padding-bottom: 80px;">
+        <section class="services">
+            <div class="container">
+                <div class="leistungen-subnav">
+                    <a href="idle.html">Idle Game</a>
+                    <a href="quiz.html" class="active">Quiz</a>
+                </div>
+
+                <div class="section-header reveal active">
+                    <h1>Ingenieur <span style="color: var(--primary-color)">Quiz.</span></h1>
+                    <p>Testen Sie Ihr Wissen – von Elektrotechnik-Grundlagen bis zur Messtechnik.</p>
+                </div>
+
+                <div class="quiz-container reveal active">
+                    <div class="quiz-progress" id="progress-dots"></div>
+
+                    <div id="quiz-box">
+                        <div class="quiz-question" id="question-text">Lädt...</div>
+                        <div class="quiz-options" id="options-box"></div>
+                    </div>
+
+                    <div id="quiz-result" style="display: none; text-align: center; margin-top: 32px;">
+                        <h3 id="result-title" style="font-size: 2rem; margin-bottom: 16px;">Fertig!</h3>
+                        <p id="result-text" style="color: var(--text-secondary); margin-bottom: 32px;"></p>
+                        <button class="btn btn-primary" onclick="resetQuiz()">Nochmal versuchen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo footer-logo">NR Ingenieur<span>.</span></div>
+            <div class="footer-links">
+                <a href="../index.html">Start</a>
+                <a href="../ueber-mich.html">Über mich</a>
+                <a href="../leistungen.html">Leistungen</a>
+                <a href="../kontakt.html">Kontakt</a>
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+            </div>
+            <p class="copyright">© 2026 NR Ingenieur Systems – Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        const questions = [
+            {
+                q: "Wie lautet die Formel für das Ohm'sche Gesetz?",
+                options: ["U = R / I", "U = I × R", "R = U × I", "I = R / U"],
+                correct: 1
+            },
+            {
+                q: "Welche Einheit hat der elektrische Widerstand?",
+                options: ["Volt (V)", "Ampere (A)", "Ohm (Ω)", "Watt (W)"],
+                correct: 2
+            },
+            {
+                q: "Was passiert mit dem Strom (I), wenn der Widerstand (R) bei gleichbleibender Spannung (U) größer wird?",
+                options: ["I wird größer", "I bleibt gleich", "I wird kleiner", "I wechselt die Richtung"],
+                correct: 2
+            },
+            {
+                q: "Wie wird die elektrische Spannung gemessen?",
+                options: ["In Reihe zum Verbraucher", "Parallel zum Verbraucher", "Hintereinander zum Verbraucher", "Gar nicht möglich"],
+                correct: 1
+            },
+            {
+                q: "Ein Widerstand von 100 Ω wird an 10 V angeschlossen. Wie hoch ist der Strom?",
+                options: ["0,1 A", "1 A", "10 A", "1000 A"],
+                correct: 0
+            },
+            {
+                q: "Was bedeutet die Abkürzung RMS?",
+                options: ["Random Measurement Signal", "Root Mean Square (Effektivwert)", "Resistance Measurement Standard", "Rated Maximum Signal"],
+                correct: 1
+            },
+            {
+                q: "Welches Gerät misst den Strom?",
+                options: ["Voltmeter", "Ohmmeter", "Amperemeter", "Wattmeter"],
+                correct: 2
+            },
+            {
+                q: "Was beschreibt die Einheit Hertz (Hz)?",
+                options: ["Elektrische Leistung", "Elektrische Ladung", "Frequenz (Schwingungen pro Sekunde)", "Magnetische Flussdichte"],
+                correct: 2
+            }
+        ];
+
+        let currentQ = 0;
+        let score = 0;
+
+        function buildDots() {
+            const box = document.getElementById('progress-dots');
+            box.innerHTML = questions.map((_, i) =>
+                `<div class="quiz-progress-dot ${i === 0 ? 'active' : ''}" id="dot-${i}"></div>`
+            ).join('');
+        }
+
+        function updateDots() {
+            questions.forEach((_, i) => {
+                const dot = document.getElementById('dot-' + i);
+                if (i < currentQ) dot.className = 'quiz-progress-dot done';
+                else if (i === currentQ) dot.className = 'quiz-progress-dot active';
+                else dot.className = 'quiz-progress-dot';
+            });
+        }
+
+        function loadQuestion() {
+            const q = questions[currentQ];
+            document.getElementById('question-text').textContent = (currentQ + 1) + ' / ' + questions.length + ' – ' + q.q;
+            const optionsBox = document.getElementById('options-box');
+            optionsBox.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-option';
+                div.textContent = opt;
+                div.onclick = () => checkAnswer(idx);
+                optionsBox.appendChild(div);
+            });
+            updateDots();
+        }
+
+        function checkAnswer(idx) {
+            const q = questions[currentQ];
+            const options = document.querySelectorAll('.quiz-option');
+            if (idx === q.correct) {
+                options[idx].classList.add('correct');
+                score++;
+            } else {
+                options[idx].classList.add('wrong');
+                options[q.correct].classList.add('correct');
+            }
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+            setTimeout(() => {
+                currentQ++;
+                if (currentQ < questions.length) {
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            }, 1500);
+        }
+
+        function showResult() {
+            document.getElementById('quiz-box').style.display = 'none';
+            const result = document.getElementById('quiz-result');
+            result.style.display = 'block';
+            const pct = Math.round((score / questions.length) * 100);
+            const title = pct === 100 ? '🎯 Perfekt!' : pct >= 75 ? 'Sehr gut!' : pct >= 50 ? 'Gut gemacht!' : 'Weiter üben!';
+            document.getElementById('result-title').textContent = title;
+            document.getElementById('result-text').textContent =
+                `${score} von ${questions.length} Fragen richtig (${pct} %)`;
+        }
+
+        function resetQuiz() {
+            currentQ = 0;
+            score = 0;
+            document.getElementById('quiz-box').style.display = 'block';
+            document.getElementById('quiz-result').style.display = 'none';
+            buildDots();
+            loadQuestion();
+        }
+
+        buildDots();
+        loadQuestion();
+    </script>
+</body>
+</html>

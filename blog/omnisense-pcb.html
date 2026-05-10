@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omnisense – Von KiCad 9 zur fertigen Platine | NR Ingenieur Systems</title>
+    <meta name="description" content="Wie ich mit KiCad 9 und nextPCB mein erstes eigenes ESP32-Sensorboard designed und gefertigt habe – und was als Nächstes kommt.">
+    <style>
+        .article-hero {
+            background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(0,0,0,0) 60%);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 60px 0 48px;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .article-tag {
+            background: rgba(249,115,22,0.15);
+            border: 1px solid rgba(249,115,22,0.3);
+            color: var(--primary-color);
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        .article-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .article-title {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-lead {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 760px;
+        }
+        .article-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 0 80px;
+        }
+        .article-body h2 {
+            font-size: 1.6rem;
+            margin: 56px 0 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .article-body h2 span {
+            color: var(--primary-color);
+        }
+        .article-body p {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        .article-body strong {
+            color: var(--text-primary);
+        }
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+        .component-card {
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: var(--transition-smooth);
+        }
+        .component-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px);
+        }
+        .component-card .comp-icon {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+        .component-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+        .component-card p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.5;
+        }
+        .process-steps {
+            margin: 32px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .process-step {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 20px;
+            position: relative;
+            padding-bottom: 32px;
+        }
+        .process-step:last-child {
+            padding-bottom: 0;
+        }
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: rgba(249,115,22,0.1);
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .process-step:not(:last-child) .step-number::after {
+            content: '';
+            position: absolute;
+            top: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: calc(100% + 32px - 48px);
+            background: var(--glass-border);
+        }
+        .step-content {
+            padding-top: 10px;
+        }
+        .step-content h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .step-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.7;
+        }
+        .info-box {
+            background: rgba(249,115,22,0.06);
+            border-left: 3px solid var(--primary-color);
+            border-radius: 0 12px 12px 0;
+            padding: 20px 24px;
+            margin: 28px 0;
+        }
+        .info-box p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .info-box strong {
+            color: var(--primary-color);
+        }
+        .usecase-box {
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 36px;
+            margin: 32px 0;
+        }
+        .usecase-box h4 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .usecase-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .usecase-box ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .usecase-box ul li::before {
+            content: '→';
+            color: var(--primary-color);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(249,115,22,0.1);
+            border: 1px solid rgba(249,115,22,0.25);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 48px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--primary-color); }
+        .video-placeholder {
+            background: var(--surface-color);
+            border: 1px dashed var(--glass-border);
+            border-radius: 20px;
+            padding: 60px 32px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .video-placeholder p {
+            color: var(--text-secondary);
+            margin: 12px 0 0;
+            font-size: 0.9rem;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, rgba(249,115,22,0.1) 0%, rgba(249,115,22,0.03) 100%);
+            border: 1px solid rgba(249,115,22,0.2);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 64px;
+        }
+        .cta-box h3 { margin-bottom: 12px; }
+        .cta-box p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+    </style>
+    <script defer src="https://umami-delta-virid.vercel.app/script.js" data-website-id="90c34ddc-d669-47a5-a9f2-c6610b942f17"></script>
+  <script type="module" crossorigin src="/assets/main-DFyTYC2e.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-0LvhfuKT.css">
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container">
+            <a href="../index.html" class="logo">NR Ingenieur<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../leistungen.html">Leistungen</a></li>
+                <li><a href="../ueber-mich.html">Über mich</a></li>
+                <li><a href="../blog.html" class="active">Blog</a></li>
+                <li><a href="../lab.html">Lab</a></li>
+                <li><a href="../kontakt.html">Kontakt</a></li>
+                <li class="mobile-cta"><a href="../kontakt.html" class="btn btn-primary">Anfragen</a></li>
+            </ul>
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="../kontakt.html" class="btn btn-primary nav-cta">Anfragen</a>
+        </div>
+    </nav>
+
+    <main style="padding-top: 100px;">
+        <div class="article-hero">
+            <div class="container">
+                <a href="../blog.html" class="back-link">
+                    <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+                    Zurück zum Blog
+                </a>
+                <div class="article-meta">
+                    <span class="article-tag">Elektrotechnik</span>
+                    <span class="article-tag">PCB-Design</span>
+                    <span class="article-date">Mai 2026</span>
+                </div>
+                <h1 class="article-title">Omnisense – Von KiCad 9<br>zur <span style="color:var(--primary-color)">fertigen Platine.</span></h1>
+                <p class="article-lead">Wie ich mein erstes eigenes ESP32-Sensorboard von Grund auf designed, bei nextPCB gefertigt habe – und warum das erst der Anfang ist.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="article-body">
+
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    Projekt in Entwicklung – Software-Phase läuft
+                </div>
+
+                <h2>Was ist <span>Omnisense?</span></h2>
+                <p>
+                    Omnisense ist mein erstes vollständig selbst entwickeltes Leiterplattendesign – und gleichzeitig ein konkretes Portfolio-Projekt, das meine Fähigkeiten im PCB-Design und in der Embedded-Entwicklung unter realen Bedingungen zeigt. Keine Simulation, kein Breadboard: echte Hardware, echte Fertigungsunterlagen, echter Chip.
+                </p>
+                <p>
+                    Die Platine basiert auf dem <strong>ESP32-C3</strong> von Espressif – einem RISC-V Mikrocontroller mit integriertem Wi-Fi und Bluetooth, der sich ideal für IoT-Anwendungen eignet. Herzstück des Sensor-Setups ist der <strong>Bosch BME280</strong>, der Temperatur, relative Luftfeuchtigkeit und Luftdruck in einem einzigen Gehäuse erfasst. Ein OLED-Display zeigt die Messwerte direkt am Gerät an.
+                </p>
+
+                <div class="info-box">
+                    <p><strong>Projektstatus:</strong> Die Platine ist gefertigt und bestückt. Aktuell läuft die Software-Entwicklung und Inbetriebnahme. Ein ausführliches Video zum gesamten Workflow – von der Schematik bis zur fertigen Platine – ist in Planung.</p>
+                </div>
+
+                <h2>Die <span>Komponenten</span> im Überblick</h2>
+                <p>Jede Komponente wurde bewusst gewählt – mit Blick auf Datenblatt, Footprint-Verfügbarkeit und Fertigbarkeit beim PCB-Hersteller.</p>
+
+                <div class="component-grid">
+                    <div class="component-card">
+                        <div class="comp-icon"><i data-lucide="cpu" style="width:28px;height:28px;"></i></div>
+                        <h4>ESP32-C3-WROOM-02</h4>
+                        <p>RISC-V MCU mit Wi-Fi & BLE 5.0. 4 MB Flash, 400 KB SRAM.</p>
+                    </div>
+                    <div class="component-card">
+                        <div class="comp-icon"><i data-lucide="thermometer" style="width:28px;height:28px;"></i></div>
+                        <h4>Bosch BME280</h4>
+                        <p>Umgebungssensor für Temperatur (±0.5 °C), Luftfeuchtigkeit (±3 %) und Luftdruck.</p>
+                    </div>
+                    <div class="component-card">
+                        <div class="comp-icon"><i data-lucide="monitor" style="width:28px;height:28px;"></i></div>
+                        <h4>SSD1306 OLED</h4>
+                        <p>0.96″ Display mit I2C-Interface. Visualisierung der Messdaten direkt am Gerät.</p>
+                    </div>
+                    <div class="component-card">
+                        <div class="comp-icon"><i data-lucide="zap" style="width:28px;height:28px;"></i></div>
+                        <h4>LM1117 3.3 V</h4>
+                        <p>Linearer Spannungsregler. Stabile Versorgung für MCU und Peripherie.</p>
+                    </div>
+                    <div class="component-card">
+                        <div class="comp-icon"><i data-lucide="usb" style="width:28px;height:28px;"></i></div>
+                        <h4>USB-C Anschluss</h4>
+                        <p>Stromversorgung und Programmierung. Robust und zukunftssicher.</p>
+                    </div>
+                    <div class="component-card">
+                        <div class="comp-icon"><i data-lucide="plug" style="width:28px;height:28px;"></i></div>
+                        <h4>JST-Stecker</h4>
+                        <p>Steckbare I/O-Schnittstellen für externe Sensoren und Aktoren (PH & XH Serie).</p>
+                    </div>
+                </div>
+
+                <p>
+                    Eine besondere Eigenheit der Platine ist die <strong>Auto-Program-Schaltung</strong> über die DTR/RTS-Leitungen des USB-Interfaces. Sie steuert die EN- und IO0-Pins des ESP32-C3 automatisch – der Chip lässt sich dadurch direkt aus der IDE flashen, ohne manuell Reset- und Boot-Taster zu betätigen. Diese Wahrheitstabelle ist auf der Platine dokumentiert und war eine der ersten Lektionen im Designprozess.
+                </p>
+
+                <h2>Der Design-Prozess mit <span>KiCad 9</span></h2>
+                <p>
+                    Für das Design habe ich KiCad 9 verwendet – die aktuelle Open-Source-PCB-Suite, die professionellen Tools in nichts nachsteht. Den Einstieg und die strukturierte Vorgehensweise habe ich durch den Kurs <strong>«KiCad 9 ESP32 Design Project»</strong> von <a href="https://techexplorations.com/so/kicad-9-esp32-design-project/" target="_blank" rel="noopener" style="color:var(--primary-color); text-decoration:none;">Tech Explorations</a> gelernt – eine Plattform, die ich jedem, der mit PCB-Design beginnt, uneingeschränkt empfehlen kann.
+                </p>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Schematik erfassen</h4>
+                            <p>Alle Komponenten und ihre Verbindungen werden im Schematic Editor definiert. Mehrere Sheets für ESP32-Core, Sensor-Interface und User-Interface halten das Projekt übersichtlich.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Footprints & Bibliotheken</h4>
+                            <p>Jede Komponente braucht einen korrekten Footprint. Kritische Bauteile wie der ESP32-C3 und die JST-Stecker wurden aus verifizierten Quellen bezogen und gegen Datenblatt geprüft.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>PCB-Layout & Design Rules</h4>
+                            <p>Im PCB-Editor werden Designregeln des Herstellers hinterlegt: Mindestleiterbahnbreiten, Abstände, Via-Grössen und Kupferfüllung. Der DRC (Design Rule Check) prüft vor dem Export automatisch auf Verstösse.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Gerber-Export & Fertigungsunterlagen</h4>
+                            <p>Der fertige Export umfasst Gerber-Dateien, Bohrdaten und die Stückliste (BOM). Diese Unterlagen gehen direkt an den Hersteller.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Bestellung bei <span>nextPCB</span></h2>
+                <p>
+                    Für die Fertigung habe ich <strong>nextPCB</strong> gewählt – einen der grössten PCB-Hersteller mit Online-Upload und automatischer DFM-Prüfung. Das Ergebnis war qualitativ überzeugend: saubere Lötmasken, präzise Bohrlöcher und gute Silkscreen-Qualität.
+                </p>
+                <p>
+                    Der Bestellprozess selbst war eine eigene Lernerfahrung. Bis die Gerber-Dateien korrekt hochgeladen, die richtigen Fertigungsoptionen gewählt und die Bestellung tatsächlich aufgegeben war, brauchte es einige Iterationen – typisch für die erste Bestellung bei einem neuen Hersteller. Am Ende hat es funktioniert, und die Platinen kamen pünktlich an.
+                </p>
+
+                <div class="info-box">
+                    <p><strong>Tipp aus der Praxis:</strong> Vor dem Upload unbedingt den Gerber-Viewer des Herstellers nutzen und alle Layer einzeln prüfen – Kupferfüllung, Silkscreen und Bohrdaten. Was im KiCad-3D-Viewer gut aussieht, muss im Gerber noch nicht korrekt exportiert sein.</p>
+                </div>
+
+                <h2>Video zum <span>Workflow</span></h2>
+
+                <div class="video-placeholder">
+                    <i data-lucide="video" style="width:48px;height:48px;opacity:0.25;"></i>
+                    <p>Video in Produktion – erscheint demnächst.<br>Der vollständige Workflow von KiCad 9 bis zur fertigen Platine wird hier dokumentiert.</p>
+                </div>
+
+                <h2>Ausblick: <span>zclaw</span> auf dem ESP32</h2>
+                <p>
+                    Die Platine ist nicht Selbstzweck – sie ist die Hardware-Basis für etwas Grösseres. Geplant ist die Integration von <strong>zclaw</strong>, einem quelloffenen KI-Agenten-Framework, das speziell für den ESP32 entwickelt wurde. zclaw läuft vollständig auf dem Mikrocontroller und belegt gerade einmal 888 KB Firmware – ein beeindruckender Beweis, wie viel «Intelligence» heute in eingebettete Systeme passt.
+                </p>
+                <p>
+                    Der Agent wird durch Anthropic Claude, OpenAI oder OpenRouter als Backend angebunden und kann über natürliche Sprache mit der Hardware interagieren: GPIO-Pins setzen, Cron-Jobs planen, Messwerte speichern und auswerten.
+                </p>
+
+                <div class="usecase-box">
+                    <h4>
+                        <i data-lucide="bot" style="width:22px;height:22px;color:var(--primary-color);"></i>
+                        Geplanter Use Case: Intelligente Umgebungsüberwachung
+                    </h4>
+                    <ul>
+                        <li>Der BME280 erfasst kontinuierlich Temperatur, Luftfeuchtigkeit und Luftdruck im Labor oder Serverraum.</li>
+                        <li>Der zclaw-Agent analysiert die Messwerte eigenständig und erkennt kritische Abweichungen vom Normbereich.</li>
+                        <li>Bei Anomalien sendet er automatisch eine Meldung via Telegram – ohne Cloud-Middleware, direkt vom Gerät.</li>
+                        <li>Über geplante Tasks (Cron) werden Tagesberichte erstellt und lokal im Flash gespeichert.</li>
+                        <li>Via natürlichsprachliche Befehle lässt sich das Gerät konfigurieren: Schwellwerte anpassen, Messintervalle ändern, Log abrufen.</li>
+                    </ul>
+                </div>
+
+                <p>
+                    Das macht Omnisense zu mehr als einem Sensor-Breakout: Es ist eine autonome Einheit, die ihren eigenen Kontext versteht, darauf reagiert und mit dem Nutzer kommuniziert – ganz ohne PC. Der vollständige Einsatz von zclaw wird in einem separaten Blogeintrag dokumentiert, sobald die Software-Phase abgeschlossen ist.
+                </p>
+
+                <div class="cta-box">
+                    <h3>Interesse an einem eigenen PCB-Design?</h3>
+                    <p>Von der Schematik bis zur fertigungsreifen Gerber-Datei – ich begleite Ihr Projekt in jeder Phase.</p>
+                    <a href="../kontakt.html" class="btn btn-primary">Projekt anfragen</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo footer-logo">NR Ingenieur<span>.</span></div>
+            <div class="footer-links">
+                <a href="../index.html">Start</a>
+                <a href="../ueber-mich.html">Über mich</a>
+                <a href="../leistungen.html">Leistungen</a>
+                <a href="../kontakt.html">Kontakt</a>
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+            </div>
+            <p class="copyright">© 2026 NR Ingenieur Systems – Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</body>
+</html>
